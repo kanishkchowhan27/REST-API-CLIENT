@@ -1,0 +1,63 @@
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.util.Scanner;
+
+import org.json.JSONObject;
+
+public class WeatherApp {
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("Enter City Name: ");
+        String city = sc.nextLine();
+
+        // Replace with your own API key
+        String apiKey = "YOUR_API_KEY_HERE";
+
+        try {
+            String apiUrl = "https://api.openweathermap.org/data/2.5/weather?q="
+                    + city + "&appid=" + apiKey + "&units=metric";
+
+            URL url = new URL(apiUrl);
+            HttpURLConnection con = (HttpURLConnection) url.openConnection();
+            con.setRequestMethod("GET");
+
+            BufferedReader br = new BufferedReader(
+                    new InputStreamReader(con.getInputStream()));
+
+            String line;
+            StringBuilder response = new StringBuilder();
+
+            while ((line = br.readLine()) != null) {
+                response.append(line);
+            }
+
+            br.close();
+
+            JSONObject json = new JSONObject(response.toString());
+
+            String cityName = json.getString("name");
+            double temperature = json.getJSONObject("main").getDouble("temp");
+            int humidity = json.getJSONObject("main").getInt("humidity");
+            String weather = json.getJSONArray("weather")
+                                 .getJSONObject(0)
+                                 .getString("description");
+            double windSpeed = json.getJSONObject("wind").getDouble("speed");
+
+            System.out.println("\n--- Weather Information ---");
+            System.out.println("City        : " + cityName);
+            System.out.println("Temperature : " + temperature + " °C");
+            System.out.println("Weather     : " + weather);
+            System.out.println("Humidity    : " + humidity + "%");
+            System.out.println("Wind Speed  : " + windSpeed + " m/s");
+
+        } catch (Exception e) {
+            System.out.println("Error fetching weather data!");
+        }
+
+        sc.close();
+    }
+}
