@@ -27,3 +27,7 @@ Security is another important aspect of a REST API client. Many REST APIs requir
 In addition, REST API clients support scalability and performance optimization. Features such as caching, pagination, and asynchronous requests help clients handle large amounts of data efficiently. By caching responses, a REST API client can reduce unnecessary network calls and improve application performance. Pagination allows clients to retrieve data in smaller chunks, making data processing faster and more manageable.
 
 In conclusion, a REST API client is a crucial component of modern applications that enables seamless communication with web services. By handling HTTP requests, parsing JSON responses, ensuring security, and managing errors efficiently, REST API clients make it possible for applications to access and use remote data reliably. Their simplicity, flexibility, and wide adoption have made REST API clients an essential tool in today’s software development ecosystem.
+
+![Image](https://github.com/user-attachments/assets/ed39363d-ddc2-40ad-90df-33ab82c22c51)
+
+![Image](https://github.com/user-attachments/assets/5731d99c-fe08-417f-9946-7d6a89df35d6)
